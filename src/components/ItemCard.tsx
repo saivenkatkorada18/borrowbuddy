@@ -126,7 +126,7 @@ export function ItemCard({ item, className, saved = false, onSave }: ItemCardPro
             </div>
             <span className="text-xs text-stone-600 truncate">{item.owner.name}</span>
             {item.owner.verified && (
-              <span className="ml-auto text-[10px] bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded-full font-bold flex-shrink-0" title="Verified College Email">
+              <span className="ml-auto text-[10px] bg-teal-50 text-teal-700 px-1.5 py-0.5 rounded-full font-bold flex-shrink-0" title="Verified Email">
                 ✓ Verified
               </span>
             )}

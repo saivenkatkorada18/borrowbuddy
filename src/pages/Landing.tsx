@@ -76,7 +76,7 @@ const FAQ = [
   {
     id: 'f3',
     question: 'How does the Trust Score protect high-value items like laptops & cameras?',
-    answer: 'Trust Score (0–100) measures on-time return rate, item condition feedback, and verified college email (.ac.in / .edu). High-value items like MacBooks and DSLR cameras require a minimum trust score of 70–85 to request, ensuring mutual accountability.',
+    answer: 'Trust Score (0–100) measures on-time return rate, item condition feedback, and verified email. High-value items like MacBooks and DSLR cameras require a minimum trust score of 70–85 to request, ensuring mutual accountability.',
   },
   {
     id: 'f4',
@@ -231,7 +231,7 @@ export function Landing({ onSignup, onExplore }: LandingProps) {
                   </Button>
                 </Magnetic>
                 <Button variant="secondary" size="lg" onClick={onSignup || (() => navigate('/explore'))}>
-                  Join with college email
+                  Join with email
                 </Button>
               </div>
 
@@ -609,7 +609,7 @@ export function Landing({ onSignup, onExplore }: LandingProps) {
                     weight: '30%',
                   },
                   {
-                    label: 'Verified college email',
+                    label: 'Verified email',
                     value: currentTrustUser.verified ? 100 : 0,
                     weight: '20%',
                   },

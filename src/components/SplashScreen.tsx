@@ -142,7 +142,7 @@ export function SplashScreen({ onLogin, onSignup, onGuest }: SplashScreenProps) 
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5, duration: 0.5 }}
           >
-            Use your university email to become verified · Demo only
+            Use your email to become verified · Demo only
           </motion.p>
         </div>
       </div>

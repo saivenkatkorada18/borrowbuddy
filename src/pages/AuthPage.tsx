@@ -104,7 +104,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
     const newErrors: Record<string, string> = {};
 
     if (!loginEmail.trim()) {
-      newErrors.loginEmail = 'University email is required';
+      newErrors.loginEmail = 'Email is required';
       triggerShake('loginEmail');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginEmail)) {
       newErrors.loginEmail = 'Please enter a valid email format';
@@ -156,7 +156,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
     }
 
     if (!signupEmail.trim()) {
-      newErrors.signupEmail = 'University email is required';
+      newErrors.signupEmail = 'Email is required';
       triggerShake('signupEmail');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signupEmail)) {
       newErrors.signupEmail = 'Please enter a valid email format';
@@ -204,7 +204,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!forgotEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(forgotEmail)) {
-      addToast({ type: 'error', title: 'Invalid email', message: 'Please provide a valid university email address.' });
+      addToast({ type: 'error', title: 'Invalid email', message: 'Please provide a valid email address.' });
       return;
     }
 
@@ -495,7 +495,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                     className="space-y-4"
                     noValidate
                   >
-                    {/* University email */}
+                    {/* Email */}
                     <div className={`relative ${shakeField === 'loginEmail' ? 'animate-shake' : ''}`}>
                       <div className="relative">
                         <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-indigo-400 pointer-events-none">
@@ -522,10 +522,10 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                             loginEmail ? 'top-2 text-xs text-indigo-600' : 'top-1/2 -translate-y-1/2 text-stone-400 text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-indigo-600'
                           }`}
                         >
-                          University email
+                          Email
                         </label>
                         {isLoginEmailUni && (
-                          <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-teal-600 flex items-center" title="Recognized University Domain">
+                          <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-teal-600 flex items-center" title="Recognized Email Domain">
                             <ShieldCheck size={18} />
                           </span>
                         )}
@@ -615,7 +615,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                     {/* Notice */}
                     <div className="pt-2 text-center">
                       <p className="text-xs text-stone-400">
-                        Use any university email (e.g. <code>sofia@oxford.ac.uk</code>).
+                        Use the email you signed up with (e.g. <code>name@example.com</code>).
                       </p>
                     </div>
                   </motion.form>
@@ -672,7 +672,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                       )}
                     </div>
 
-                    {/* University Email */}
+                    {/* Email */}
                     <div className={`relative ${shakeField === 'signupEmail' ? 'animate-shake' : ''}`}>
                       <div className="relative">
                         <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-indigo-400 pointer-events-none">
@@ -699,16 +699,16 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                             signupEmail ? 'top-2 text-xs text-indigo-600' : 'top-1/2 -translate-y-1/2 text-stone-400 text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-indigo-600'
                           }`}
                         >
-                          College email (.edu, .ac.in, .ac.*)
+                          Email
                         </label>
                         {isSignupEmailUni && (
-                          <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-teal-600 flex items-center" title="Verified College Email">
+                          <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-teal-600 flex items-center" title="Verified Email">
                             <ShieldCheck size={18} />
                           </span>
                         )}
                       </div>
                       <p className="mt-1.5 text-[11px] text-stone-500 font-medium">
-                        Use your college email (for example name@college.ac.in) to become verified.
+                        Enter your email address (for example name@example.com).
                       </p>
                       {errors.signupEmail && (
                         <p className="mt-1 text-xs text-red-500 flex items-center gap-1 font-medium">
@@ -826,13 +826,13 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                       )}
                     </div>
 
-                    {/* University Verification Notice */}
+                    {/* Verification Notice */}
                     <div className="p-3 bg-[#F0FDF9] rounded-2xl border border-teal-200 flex items-start gap-2.5 text-xs text-teal-800">
                       <ShieldCheck size={16} className="text-teal-600 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-bold">Use your university email to become verified.</p>
+                        <p className="font-bold">Use a valid email to create your account.</p>
                         <p className="text-teal-600 text-[11px] mt-0.5">
-                          Verification is based on your academic email domain. No intrusive background checks.
+                          We'll use your email to keep your account secure.
                         </p>
                       </div>
                     </div>
@@ -882,7 +882,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
               >
                 <h3 className="font-display font-extrabold text-xl text-[#1E1B4B] mb-2">Reset your password</h3>
                 <p className="text-stone-500 text-sm mb-5">
-                  Enter your university email and we will send you a password reset link.
+                  Enter your email and we will send you a password reset link.
                 </p>
 
                 <form onSubmit={handleForgotPassword} className="space-y-4">
@@ -891,7 +891,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
                       type="email"
                       value={forgotEmail}
                       onChange={(e) => setForgotEmail(e.target.value)}
-                      placeholder="name@university.ac.uk"
+                      placeholder="name@example.com"
                       className="w-full px-4 py-3 rounded-xl border border-[#E0E7FF] bg-white text-[#1E1B4B] text-sm focus:outline-none focus:border-[#4338CA]"
                     />
                   </div>
@@ -954,7 +954,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
 
                 <div className="space-y-4 text-sm text-stone-600">
                   <div className="p-3 bg-indigo-50 rounded-xl text-indigo-900 text-xs font-medium">
-                    ⚡ <strong>Demo Mode is currently active!</strong> You can log in or sign up immediately with any university email. To connect your live Supabase database, follow the 3 quick steps below:
+                    ⚡ <strong>Demo Mode is currently active!</strong> You can log in or sign up immediately with any email. To connect your live Supabase database, follow the 3 quick steps below:
                   </div>
 
                   <ol className="space-y-3 list-decimal list-inside text-xs leading-relaxed">

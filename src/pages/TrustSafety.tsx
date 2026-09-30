@@ -136,7 +136,7 @@ export function TrustSafety() {
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
                   </div>
-                  <span className="text-sm font-medium text-stone-600">Verified university email <span className="text-stone-300 text-xs">(weight: 20%)</span></span>
+                  <span className="text-sm font-medium text-stone-600">Verified email <span className="text-stone-300 text-xs">(weight: 20%)</span></span>
                 </label>
               </div>
 

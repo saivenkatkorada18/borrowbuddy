@@ -116,7 +116,7 @@ export function AuthModal({ open, onClose, initialTab = 'login', onSuccess }: Au
               noValidate
             >
               <Input
-                label="University email"
+                label="Email"
                 type="email"
                 autoComplete="email"
                 icon={<Mail size={16} />}
@@ -168,7 +168,7 @@ export function AuthModal({ open, onClose, initialTab = 'login', onSuccess }: Au
               />
               <div>
                 <Input
-                  label="College email (e.g. name@college.ac.in)"
+                  label="Email"
                   type="email"
                   autoComplete="email"
                   icon={<Mail size={16} />}
@@ -176,7 +176,7 @@ export function AuthModal({ open, onClose, initialTab = 'login', onSuccess }: Au
                   {...signupForm.register('email')}
                 />
                 <p className="mt-1 text-[11px] text-stone-500 font-medium">
-                  Use your college email (for example name@college.ac.in) to become verified.
+                  Enter your email address (for example name@example.com).
                 </p>
               </div>
               <Input
@@ -197,7 +197,7 @@ export function AuthModal({ open, onClose, initialTab = 'login', onSuccess }: Au
                 Create account
               </Button>
               <p className="text-center text-xs text-stone-400 mt-2">
-                Use your university email to get verified · Demo only
+                Use your email to create your account · Demo only
               </p>
             </motion.form>
           )}

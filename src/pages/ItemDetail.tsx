@@ -423,7 +423,7 @@ export function ItemDetail() {
                     <div className="flex items-center gap-2">
                       <span className="font-display font-bold text-lg text-[#1E1B4B]">{item.owner.name}</span>
                       {item.owner.verified && (
-                        <span className="sticker sticker-teal text-[11px]">✓ Verified College Email</span>
+                        <span className="sticker sticker-teal text-[11px]">✓ Verified Email</span>
                       )}
                     </div>
                     <p className="text-xs text-stone-500 font-medium mt-0.5">

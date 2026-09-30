@@ -73,7 +73,7 @@ const SAFETY_TILES = [
   { icon: <Star size={22} />, title: 'Condition ratings', desc: 'Both sides rate the condition after each exchange.' },
   { icon: <MessageSquare size={22} />, title: 'Dispute resolution', desc: 'Report issues within 24h. Our team mediates any dispute.' },
   { icon: <RotateCcw size={22} />, title: 'Return reminders', desc: 'Automated reminders are sent 24h before the return date.' },
-  { icon: <ArrowRight size={22} />, title: 'Verified accounts', desc: 'University email verification reduces anonymous bad actors.' },
+  { icon: <ArrowRight size={22} />, title: 'Verified accounts', desc: 'Email verification reduces anonymous bad actors.' },
 ];
 
 export function HowItWorks() {
