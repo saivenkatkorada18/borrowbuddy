@@ -136,12 +136,10 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
         return;
       }
 
-      // Success circular clip-path transition
+      // Success — trigger exit animation and redirect
       const displayName = loginEmail.split('@')[0].replace(/[^a-zA-Z]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()).trim() || 'Member';
       setIsExiting(true);
-      setTimeout(() => {
-        onSuccess(displayName);
-      }, 700);
+      onSuccess(displayName);
     } catch {
       setErrors({ form: 'An unexpected error occurred. Please try again.' });
       setIsSubmitting(false);
@@ -196,9 +194,7 @@ export function AuthPage({ onSuccess }: AuthPageProps) {
       }
 
       setIsExiting(true);
-      setTimeout(() => {
-        onSuccess(signupName.trim());
-      }, 700);
+      onSuccess(signupName.trim());
     } catch {
       setErrors({ form: 'Signup failed. Please try again.' });
       setIsSubmitting(false);

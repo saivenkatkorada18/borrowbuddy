@@ -128,8 +128,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Login handler
   const login = useCallback(async (email: string, password: string): Promise<{ error?: string }> => {
-    setIsLoading(true);
-
     if (isConfigured) {
       try {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -138,22 +136,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
 
         if (error) {
-          setIsLoading(false);
           return { error: error.message };
         }
 
         if (data.user) {
+          // onAuthStateChange (SIGNED_IN) will call setUser automatically.
+          // We do a manual fetch here as a fast-path in case the listener is slow.
           const profile = await fetchProfile(
             data.user.id,
             data.user.email || email,
             data.user.user_metadata?.name,
           );
           setUser(profile);
-          setIsLoading(false);
           return {};
         }
       } catch (err: any) {
-        setIsLoading(false);
         return { error: err?.message || 'Login failed' };
       }
     }
@@ -175,14 +172,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(mockUser));
     } catch {}
-    setIsLoading(false);
     return {};
   }, [isConfigured, fetchProfile]);
 
   // Signup handler
   const signup = useCallback(async (name: string, email: string, password: string): Promise<{ error?: string }> => {
-    setIsLoading(true);
-
     if (isConfigured) {
       try {
         const { data, error } = await supabase.auth.signUp({
@@ -196,19 +190,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
 
         if (error) {
-          setIsLoading(false);
           return { error: error.message };
         }
 
         if (data.user) {
-          // If auto sign-in is enabled or user returned
+          // onAuthStateChange (SIGNED_IN) will call setUser automatically.
           const profile = await fetchProfile(data.user.id, email, name);
           setUser(profile);
-          setIsLoading(false);
           return {};
         }
       } catch (err: any) {
-        setIsLoading(false);
         return { error: err?.message || 'Sign up failed' };
       }
     }
@@ -231,25 +222,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify(newUser));
     } catch {}
-    setIsLoading(false);
     return {};
   }, [isConfigured, fetchProfile]);
 
   // Logout handler
   const logout = useCallback(async () => {
-    setIsLoading(true);
     if (isConfigured) {
       try {
         await supabase.auth.signOut();
+        // onAuthStateChange (SIGNED_OUT) will call setUser(null) automatically.
       } catch (e) {
         console.warn('Supabase logout error:', e);
+        setUser(null);
       }
+    } else {
+      setUser(null);
     }
-    setUser(null);
     try {
       localStorage.removeItem(STORAGE_SESSION_KEY);
     } catch {}
-    setIsLoading(false);
   }, [isConfigured]);
 
   // Reset password

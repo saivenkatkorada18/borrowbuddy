@@ -1,5 +1,5 @@
 // src/App.tsx — Root app with routing, auth gate, full-screen auth entry
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MotionConfig } from 'motion/react';
 import { Navbar } from './components/layout/Navbar';
@@ -21,10 +21,8 @@ import { useToast } from './context/ToastContext';
 function AppContent() {
   const { isAuthenticated, isLoading } = useAuth();
   const { addToast } = useToast();
-  const [hasEnteredApp, setHasEnteredApp] = useState(false);
 
   const handleAuthSuccess = useCallback((displayName: string) => {
-    setHasEnteredApp(true);
     addToast({
       type: 'success',
       title: `Welcome, ${displayName}! 🎉`,
@@ -44,8 +42,8 @@ function AppContent() {
     );
   }
 
-  // Show AuthPage until user successfully logs in or signs up
-  if (!isAuthenticated || !hasEnteredApp) {
+  // Show AuthPage until user is authenticated
+  if (!isAuthenticated) {
     return <AuthPage onSuccess={handleAuthSuccess} />;
   }
 
